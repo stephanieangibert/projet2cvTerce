@@ -1,0 +1,12 @@
+table td{
+    padding: 0;
+    width: 550px;
+    border: solid 2px black;
+}
+ img{
+    width: 25%;
+    display: block;
+}
+.btn{
+    width: 100px;
+}

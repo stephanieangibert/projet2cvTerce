@@ -30,6 +30,8 @@ function admin(){
 } 
 
 function addActualite(){
+   
+  
      if(isset($_POST['submitAdd'])){
      if(isset($_FILES['photo']) && !empty($_FILES['photo']['name']) && !empty($_POST['title']) && !empty($_POST['content'])){
         $tailleMax = 2097152;
@@ -79,21 +81,25 @@ function addActualite(){
       
      
  }
- $postActua=new PostManager();
-     $reqR= $postActua->displayActua();
+  $PostActua=new PostManager();
+    $reqR= $PostActua->displayActua(); 
  
-   require('view/backend/backoffice.php'); 
-// include_once('view/backend/backoffice.php');
-
+ 
+    require('view/backend/backoffice.php'); 
 
 
 }     
-/* function displayActualite()  {
-    $postActua=new PostManager();
-    $reqR= $postActua->displayActua(); 
-    require('view/backend/backoffice.php'); 
+ 
+ function  delete($id)
+{
+   $del=new PostManager();
+   $delRecipe=$del->displayDelete($id);
+   header('location:index.php?action=backoffice');
    
-
 }
- */
-
+function editPost($idPt)
+{ 
+    $postcom=new PostManager();
+    $sqeditpo=$postcom->editPosts($idPt);    
+    require('view/backend/edit.php');    
+}

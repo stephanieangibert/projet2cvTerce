@@ -1,4 +1,4 @@
-/* body{
+ body{
    width: 100%;
    height: 100vh;
    display:flex ;
@@ -13,7 +13,7 @@ form{
     display: flex;
     justify-content: center;
     align-items: center;
-} */
+} 
 #actualite{
     margin-right: 10%;
 }

@@ -29,4 +29,29 @@ public function displayActua()
     return $reqR;
 
 }
+public function displayDelete($id)
+{
+   $db = $this->dbConnect();
+   $delPos =$db->prepare("DELETE FROM actualite WHERE id = ?");
+   $delPos->execute(array($id));
+   $delPost=$delPos->fetch();
+   return $delPost;
+}
+public function editPosts($idPt)
+{
+    $db = $this->dbConnect();
+    $sqedp =$db->prepare( "SELECT * FROM actualite where id =?");   
+    $sqedp->execute(array($idPt));
+    $sqeditpo=$sqedp->fetch();
+    return $sqeditpo;
+}
+public function upd($title,$content,$photo,$id)
+{
+    $db = $this->dbConnect();
+    $sqPosts= $db->prepare("UPDATE actualite SET title = ?,content = ?,photo = ? WHERE id = ?");   
+    $postup=$sqPosts->execute(array($title,$content,$photo,$id));
+    return $postup;                    
+    
+                   
+}
 }
