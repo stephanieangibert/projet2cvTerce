@@ -188,10 +188,84 @@ footer{
     
     }
 }
+.card{
+    width: 286px;
+    height: 322px;
+    position: relative;
+}
+p.card-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 255px;
+    height: 50px;
+  
+}
+.card:hover{
+transform: scale(1.2);
+}
 .card-body .btn{
     background-color: rgb(178,171,171);
     color:white;
+    position: absolute;
+    top:88%;
+ transform: translate(-50%,-50%);
 }
 textarea.form-control {
     height: 140px;
 }
+.pagination{
+    margin-top: 2%;
+    text-align: center;
+   
+}
+.pagination a{
+  padding-left: 1%;
+  padding-right: 1%;
+  border:solid 1px;
+  border-radius:8%;
+  text-align: center;
+}
+
+.pagination a:hover{
+    color: white;
+    background-color: black;
+    border: black;
+}
+.pagination font{
+  padding-left: 1%;
+  padding-right: 1%;
+  border:solid 1px;
+  border-radius:8%;
+  text-align: center;
+
+}
+span{
+    font-family: 'Abril Fatface';
+    color: white;
+    font-size: 80px;
+}
+.menuItem span{
+ 
+   
+    display: inline-block;
+}
+.item{
+    color:#F1F1F1;
+}
+.label{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    color:transparent;
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.3s;
+}
+.menu{
+    position: relative;
+  
+}
+ .menuItem:hover .label{
+    color: #cdc7cd;
+}
+ 

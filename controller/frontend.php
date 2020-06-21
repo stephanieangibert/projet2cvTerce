@@ -7,11 +7,28 @@ require('model/frontend/postManager.php');
 
 function listPosts()
 {
-    //$managerP=new postMananger();
-    //$posts=$managerP->getPosts();
-/*     $posts = getPosts(); */
-
+    $managerP=new PostManager();   
+    $nbrRecipe=$managerP->totalActualite();   
+    $RecipePerPage =6;
+    $allPages = ceil($nbrRecipe/$RecipePerPage);   
+  
+    if(isset($_GET['listPosts']) AND !empty($_GET['listPosts']) AND $_GET['listPosts'] > 0 AND $_GET['listPosts'] <= $allPages) {
+      $_GET['listPosts'] = intval($_GET['listPosts']);
+      $currentPage = $_GET['listPosts'];
+   } else {
+      $currentPage = 1;
+   }   
+   $begin = ($currentPage-1)*$RecipePerPage;
+ 
+   $posts=$managerP->getPosts($begin,$RecipePerPage);   
+   $PostActua=new PostManager();
+   $reqR= $PostActua->displayActua(); 
+       
     require('view/frontend/listPostView.php');
+    
+}
+function displayOnePost(){
+   require('view/frontend/listOnePost.php');
 }
 
 function admin(){
@@ -78,8 +95,8 @@ function addActualite(){
      }          
 
      }
-      
-     
+     require('view/backend/backoffice.php'); 
+  
  }
   $PostActua=new PostManager();
     $reqR= $PostActua->displayActua(); 
@@ -88,7 +105,9 @@ function addActualite(){
     require('view/backend/backoffice.php'); 
 
 
-}     
+}   
+
+     
  
  function  delete($id)
 {
@@ -97,9 +116,132 @@ function addActualite(){
    header('location:index.php?action=backoffice');
    
 }
+ 
+function displayUpdate($idPt)
+{
+     $post=new PostManager();
+     $sqeditpo=$post->editPosts($idPt);
+     $reqRet=$post->displayRetour();
+
+    require('view/backend/update.php'); 
+   
+     if(isset($_POST['submit'])){
+
+        if(isset($_FILES['photo']) && !empty($_FILES['photo']['name']) && !empty($_POST['title']) && !empty($_POST['content'])){
+            $tailleMax = 2097152;
+            $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
+            $title=htmlspecialchars($_POST['title']);    
+            $content=htmlspecialchars($_POST['content']);
+            $id=$_GET['id'];
+          
+            if($_FILES['photo']['size'] <= $tailleMax){
+               $extensionUpload = strtolower(substr(strrchr($_FILES['photo']['name'], '.'), 1));
+             
+               if(in_array($extensionUpload, $extensionsValides)){
+                   $chemin = "member/photo/".$_POST['title'].".".$extensionUpload;
+                   $resultat = move_uploaded_file($_FILES['photo']['tmp_name'], $chemin);
+                      if($resultat){
+                
+                       $photo=$_POST['title'].".".$extensionUpload;                   
+                       $post=new PostManager();
+                       $postup=$post->upd($title,$content,$photo,$id);      
+                       echo"La modification a été prise en compte !";     
+                  
+                      }
+                      else{
+                       $msg = "Erreur durant l'importation de votre photo";
+                      }
+               }else{
+                   $msg = "Votre photo  doit être au format jpg, jpeg, gif ou png";
+               }
+            }else{
+               $msg = "Votre photone doit pas dépasser 2Mo";
+            }
+                
+         }else{
+             if(!empty($_POST['title'])&&!empty($_POST['content'])){
+           $title=$_POST['title']; 
+     
+           $content=$_POST['content'];      
+           $id=$_GET['id'];
+           $photo="";
+           $post=new PostManager();
+           $postup=$post->upd($title,$content,$photo,$id);      
+           echo"La modification a été prise en compte !";      
+        
+    
+         } 
+         else{
+            $erreur="Veuillez remplir tous les champs !";
+         }          
+    
+         }
+     }
+     if(isset($_POST['submitRetour'])){
+
+      if(isset($_FILES['photo']) && !empty($_FILES['photo']['name']) && !empty($_POST['title']) && !empty($_POST['content'])){
+          $tailleMax = 2097152;
+          $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
+          $title=htmlspecialchars($_POST['title']);    
+          $content=htmlspecialchars($_POST['content']);
+          $id=$_GET['id'];
+        
+          if($_FILES['photo']['size'] <= $tailleMax){
+             $extensionUpload = strtolower(substr(strrchr($_FILES['photo']['name'], '.'), 1));
+           
+             if(in_array($extensionUpload, $extensionsValides)){
+                 $chemin = "member/photo/".$_POST['title'].".".$extensionUpload;
+                 $resultat = move_uploaded_file($_FILES['photo']['tmp_name'], $chemin);
+                    if($resultat){
+              
+                     $photo=$_POST['title'].".".$extensionUpload;                   
+                     $post=new PostManager();
+                     $postup=$post->addRetour($title,$content,$photo,$id);      
+                     echo"La modification a été prise en compte !";     
+                
+                    }
+                    else{
+                     $msg = "Erreur durant l'importation de votre photo";
+                    }
+             }else{
+                 $msg = "Votre photo  doit être au format jpg, jpeg, gif ou png";
+             }
+          }else{
+             $msg = "Votre photone doit pas dépasser 2Mo";
+          }
+              
+       }else{
+           if(!empty($_POST['title'])&&!empty($_POST['content'])){
+         $title=$_POST['title']; 
+   
+         $content=$_POST['content'];      
+         $id=$_GET['id'];
+         $photo="";
+         $post=new PostManager();
+         $postup=$post->addRetour($title,$content,$photo,$id);      
+         echo"La modification a été prise en compte !";      
+      
+  
+       } 
+       else{
+          $erreur="Veuillez remplir tous les champs !";
+       }          
+  
+       }
+   }
+ 
+  
+    
+}
 function editPost($idPt)
 { 
     $postcom=new PostManager();
     $sqeditpo=$postcom->editPosts($idPt);    
-    require('view/backend/edit.php');    
+    require('view/backend/editPost.php');    
+}
+function editOnePost($idPt)
+{
+   $postcom=new PostManager();
+  $sqeditpo=$postcom->editOnePosts($idPt); 
+    require('view/frontend/listOnePost.php');
 }

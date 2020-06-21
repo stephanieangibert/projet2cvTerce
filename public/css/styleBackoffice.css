@@ -10,3 +10,9 @@ table td{
 .btn{
     width: 100px;
 }
+#pageAccueil{
+    background-color: deepskyblue;
+}
+#retourActualites{
+    background-color: khaki;
+}

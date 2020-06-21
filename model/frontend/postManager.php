@@ -6,15 +6,22 @@ require_once("model/frontend/manager.php"); // Vous n'alliez pas oublier cette l
 
 class PostManager extends Manager
 {
-   /*  public function getPosts($begin,$RecipePerPage)
+     public function getPosts($begin,$RecipePerPage)
 {
     
     $db = $this->dbConnect();    
-    $req=$db->query('SELECT recipe.id, recipe.title,recipe.ingredients,recipe.content,recipe.photo,recipe.love,users.pseudo,users.avatar
-     FROM recipe INNER JOIN users ON recipe.id_user=users.id
-     WHERE statut=1 ORDER BY date_content DESC LIMIT '. $begin .','. $RecipePerPage .'');
+    $req=$db->query('SELECT * FROM actualite ORDER BY id DESC LIMIT '. $begin .','. $RecipePerPage .'');
+     
      return $req;
-} */
+} 
+public function totalActualite(){
+    $db = $this->dbConnect();
+    $reqRec=$db->query('SELECT id FROM actualite ');
+    $nbrRecipe =$reqRec->rowCount();
+    return $nbrRecipe;
+}
+
+
 public function add($title,$content,$photo)
 {
     $db = $this->dbConnect();
@@ -22,11 +29,25 @@ public function add($title,$content,$photo)
     $addActua = $add->execute(array($title,$content,$photo));    
     return $addActua;
 }
+public function addRetour($title,$content,$photo,$id)
+{
+    $db = $this->dbConnect();
+    $addR = $db->prepare('INSERT INTO retour(title,content,photo,id_photo) VALUES(?,?,?,?)');
+    $addActuaR = $addR->execute(array($title,$content,$photo,$id));    
+    return $addActuaR;
+}
 public function displayActua()
 {
     $db = $this->dbConnect(); 
     $reqR=$db->query('SELECT * FROM actualite ORDER BY id DESC');
     return $reqR;
+
+}
+public function displayRetour()
+{
+    $db = $this->dbConnect(); 
+    $reqRet=$db->query('SELECT * FROM retour ORDER BY id DESC');
+    return $reqRet;
 
 }
 public function displayDelete($id)
@@ -45,6 +66,14 @@ public function editPosts($idPt)
     $sqeditpo=$sqedp->fetch();
     return $sqeditpo;
 }
+public function editOnePosts($idPt)
+{
+    $db = $this->dbConnect();
+    $sqedp =$db->prepare( "SELECT * FROM actualite where id =?");   
+    $sqedp->execute(array($idPt));
+    $sqeditpo=$sqedp->fetch();
+    return $sqeditpo;
+}
 public function upd($title,$content,$photo,$id)
 {
     $db = $this->dbConnect();
@@ -54,4 +83,5 @@ public function upd($title,$content,$photo,$id)
     
                    
 }
+
 }

@@ -1,33 +1,3 @@
-<?php
-
-session_start();
-
-if(!empty($_POST) OR !empty($_FILES))
-{
-$_SESSION['sauvegarde'] = $_POST ;
-$_SESSION['sauvegardeFILES'] = $_FILES ;
-
-$fichierActuel = $_SERVER['PHP_SELF'] ;
-if(!empty($_SERVER['QUERY_STRING']))
-{
-$fichierActuel .= '?' . $_SERVER['QUERY_STRING'] ;
-}
-
-header('Location: ' . $fichierActuel);
-exit;
-}
-
-if(isset($_SESSION['sauvegarde']))
-{
-$_POST = $_SESSION['sauvegarde'] ;
-$_FILES = $_SESSION['sauvegardeFILES'] ;
-
-unset($_SESSION['sauvegarde'], $_SESSION['sauvegardeFILES']);
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -36,40 +6,53 @@ unset($_SESSION['sauvegarde'], $_SESSION['sauvegardeFILES']);
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" href="public/css/styleBackoffice.css">
+<link rel="stylesheet" href="public/css/styleUpdate.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <title>Document</title>
 </head>
 <body>
-    <section id="pageAccueil">
+    <section class="actualites">
    <a href="index.php" ><p>Retour sur le site</p></a>
-<h2>Saisie de l'actualité sur la page d'accueil</h2>
-<a href="2cv/index.php?action=backoffice">Appui</a>
+<h2>Saisie de l'actualité</h2>
+<p>Pour voir les modifications réactualiser après envoi</p>
 <div >
 <form method="post" action="" enctype="multipart/form-data" id="actualite">
 
 <label>Le titre</label>
-<input type="text" name="title" id="title"></input> 
+<textarea type="text" name="title" id="title" ><?php echo $sqeditpo['title']; ?></textarea> 
 <br> 
  
 
 <label>Rédaction du message</label>
-<textarea  class="form-control col-md-8" type="text" name="content" id="content" rows="10" cols="48" ></textarea>
+<textarea  class="form-control col-md-8" type="text" name="content" id="content" rows="10" cols="48"><?php echo $sqeditpo['content']; ?> </textarea>
 <br>
 <label class="text-white" for="file" id="photo">Vous avez le choix de laisser une photo:</label> 
 <input class="text-white" type="file" name="photo" />
 <br>
-<input type="submit" id="submit" name="submitAdd" value="envoyer" >
+<input type="submit" id="submit" name="submit" value="envoyer" >
 </form>
          </div>
+</section>     
+<section class="retourActualite">
+         <br> 
+         <h2>Retour d'actualité</h2>
+         <form method="post" action="" enctype="multipart/form-data" id="actualite">
+ <label>Le titre</label>
+ <input type="text" name="title" id="title"></input> 
+ <br> 
+ <label>Rédaction du message</label>
+ <textarea  class="form-control col-md-8" type="text" name="content" id="content" rows="10" cols="48" ></textarea>
+ <br>
+ <label class="text-white" for="file" id="photo">Vous avez le choix de laisser une photo:</label> 
+ <input class="text-white" type="file" name="photo" />
+ <br>
+ <input type="submit" id="submit" name="submitRetour" value="envoyer" >
+ </form>
+          <h2>Traitement retour d'actualité</h2> 
+          </section>  
 
-<h2>Traitement de l'actualité sur la page d'accueil</h2>
-
-
-
-
-<div class="table-responsive-sm"> 
+          <div class="table-responsive-sm"> 
          <table cellpadding="5" cellspacing="10" class="table">
 <thead>
          <th scope="col">Titre</th>
@@ -81,7 +64,7 @@ unset($_SESSION['sauvegarde'], $_SESSION['sauvegardeFILES']);
 </thead>  
 <tbody>   
 
-<?php while($data= $reqR->fetch()):
+<?php while($data=  $reqRet->fetch()):
        echo'<tr><td>'.$data['title'].'</td>
                 <td>'.$data['content'].'</td>'?>
                
@@ -101,17 +84,40 @@ unset($_SESSION['sauvegarde'], $_SESSION['sauvegardeFILES']);
              </tr>';
         endwhile;?>            
          </tbody>
-         </table>
-         </section>
-         <section id="retourActualites">
-        
+
+<script type="text/javascript" src="public/js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+tinyMCE.init({
+
+mode : "exact", 
+// id ou class, des textareas appelés
+elements : "commentaire", 
+// en mode avancé, cela permet de choisir les plugins
+theme : "advanced", 
+// langue
+//language : "fr", 
+// liste des plugins
+content_css: "http://localhost/public/css/my_tiny_styles.css",  
+theme_advanced_toolbar_location : "top",
+theme_advanced_buttons1 : "bold,italic,underline,strikethrough,sup,forecolor,separator,"
++ "justifyleft,justifycenter,justifyright,justifyfull,formatselect,"
++ "bullist,numlist,outdent,indent,separator,cleanup,|,undo,redo,|,",
+theme_advanced_buttons2 : "",
+theme_advanced_buttons3 : "",
+height:"450px",
+width:"1000px"
+});
 
 
+</script>     
 
-
-         </section>
- 
-<?php $reqR->closeCursor();?>
 </body>
 </html>
+
+
+
+           
+                         
+
+
 

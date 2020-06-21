@@ -12,7 +12,8 @@ try {
           elseif ($_GET['action'] == 'backoffice') {
          
             addActualite();
-            //  displayActualite();
+         
+       
            }
            elseif ($_GET['action'] == 'delete') {
            if(isset($_GET['id'])){
@@ -21,7 +22,9 @@ try {
         }
            elseif($_GET['action'] == 'edit'){
             if (isset($_GET['id']) && $_GET['id'] > 0){
-                editPost($_GET['id']);
+                 editPosts($_GET['id']);
+              
+          
                
             } else {
                 throw new Exception('Tous les champs ne sont pas remplis !');
@@ -29,16 +32,30 @@ try {
         }
            elseif ($_GET['action'] == 'update') {
             if(isset($_GET['id'])){
-             update($_GET['id']);
+                displayUpdate($_GET['id']);
           
            
            }
             
-        }
+        }  
+        elseif ($_GET['action'] == 'editOnePost') {
+            if (isset($_GET['id']) && $_GET['id'] > 0){
+                editOnePost($_GET['id']);
+             
+         
+              
+           } else {
+               throw new Exception('Tous les champs ne sont pas remplis !');
+           }
+            
+        }  
+        
+       
+   
    
     }else{
         listPosts();
-    
+        
      }    
 
     }
