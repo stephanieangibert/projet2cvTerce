@@ -42,7 +42,7 @@ public function displayActua()
     $reqR=$db->query('SELECT * FROM actualite ORDER BY id DESC');
     return $reqR;
 
-}
+} 
 public function displayRetour()
 {
     $db = $this->dbConnect(); 
@@ -58,6 +58,15 @@ public function displayDelete($id)
    $delPost=$delPos->fetch();
    return $delPost;
 }
+public function displayDeleteRet($id)
+{
+   $db = $this->dbConnect();
+   $delPos =$db->prepare("DELETE FROM retour WHERE id = ?");
+   $delPos->execute(array($id));
+   $delPost=$delPos->fetch();
+   return $delPost;
+}
+
 public function editPosts($idPt)
 {
     $db = $this->dbConnect();
@@ -74,6 +83,22 @@ public function editOnePosts($idPt)
     $sqeditpo=$sqedp->fetch();
     return $sqeditpo;
 }
+/* public function editPostRetour($idPt)
+{
+    $db = $this->dbConnect();
+    $sqedp =$db->prepare( "SELECT * FROM retour ORDER BY id_photo =?");   
+    $sqedp->execute(array($idPt));
+    $sqeditpoRe=$sqedp->fetch();
+    return $sqeditpoRe;
+} */
+public function editPostRetour($idPt)
+{
+    $db = $this->dbConnect(); 
+    $sqeditpoRe=$db->query('SELECT * FROM retour ORDER BY id_photo');
+    return $sqeditpoRe;
+
+}
+
 public function upd($title,$content,$photo,$id)
 {
     $db = $this->dbConnect();

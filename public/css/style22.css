@@ -10,7 +10,16 @@ h1{
     color: black;
 margin-top: 4%;
 text-align: center;
+font-family: 'Abril Fatface';
 }
 p{
     text-align: center;
+    font-family: 'Abril Fatface';
+    font-size: 120%;
+}
+.photoOnePost img{
+    width: 475px;
+    height: 400px;
+    background-size: cover; 
+    border-radius: 22px;   
 }

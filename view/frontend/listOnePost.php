@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="public/css/style.css">
 <link rel="stylesheet" href="public/css/style22.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet"> 
 
     <title>Document</title>
 </head>
@@ -40,12 +41,47 @@
      
       <?php echo '<section> <h1>'.$sqeditpo['title'].'</h1>' ?>
     <?php   if(strlen($sqeditpo['photo'])!=0){
-     echo '<div><p class="photoRecette"> <img class="photoRe"src="member/photo/'.$sqeditpo['photo'].'"></p></div>';
+     echo '<div><p class="photoOnePost"> <img class="photoRe"src="member/photo/'.$sqeditpo['photo'].'"></p></div>';
+     echo '<p> '.$sqeditpo['content'].'</p>';
     }
     else{ echo'<br>';
     }?>
-    
-    <?php echo'<p>'.$sqeditpo['content'].'</p></section>' ?>
+     
+
+  
+  
+    <div class="container m-auto d-flex flex-row flex-wrap justify-content-center align-items-center">
+         
+    <?php while ($data = $sqeditpoRe->fetch()):?>
+         
+          <div class="row">
+       
+              <div class="col-md-4 align-sel-centers mr-3 mb-3">
+       
+                  <div class="card text-center" style="width: 18rem;">
+             
+                      <div class="card-body">
+                 
+                      
+                        <?php if($data['photo']!=""):
+                                echo'<img src="member/photo/'.$data['photo'].'">';
+            endif; ?>
+                        <!-- <img src="images/picnic.jpg" alt=""> -->
+                        <p class="card-text">  <?php   echo ($data['content']);?></p>
+                    
+                                                                                
+                       
+                                           
+                      </div>
+                                          
+                    </div>   
+              
+                  </div>
+               
+                  </div>
+                  <?php endwhile; ?>  
+         
+                  </div>
   
  
         <footer>

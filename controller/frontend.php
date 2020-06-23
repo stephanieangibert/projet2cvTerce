@@ -9,7 +9,7 @@ function listPosts()
 {
     $managerP=new PostManager();   
     $nbrRecipe=$managerP->totalActualite();   
-    $RecipePerPage =6;
+    $RecipePerPage=6;
     $allPages = ceil($nbrRecipe/$RecipePerPage);   
   
     if(isset($_GET['listPosts']) AND !empty($_GET['listPosts']) AND $_GET['listPosts'] > 0 AND $_GET['listPosts'] <= $allPages) {
@@ -21,8 +21,8 @@ function listPosts()
    $begin = ($currentPage-1)*$RecipePerPage;
  
    $posts=$managerP->getPosts($begin,$RecipePerPage);   
-   $PostActua=new PostManager();
-   $reqR= $PostActua->displayActua(); 
+   // $PostActua=new PostManager();
+ /*    $reqR= $PostActua->displayActua();  */
        
     require('view/frontend/listPostView.php');
     
@@ -116,7 +116,16 @@ function addActualite(){
    header('location:index.php?action=backoffice');
    
 }
- 
+function  deleteRet($id,$id_photo)
+{
+   $delR=new PostManager();
+   $delRecipeR=$delR->displayDeleteRet($id);
+   header('location:index.php?action=update&id='. $id_photo);
+   // require('index.php?action=update&id=' . $id_photo);
+
+}
+
+
 function displayUpdate($idPt)
 {
      $post=new PostManager();
@@ -243,5 +252,8 @@ function editOnePost($idPt)
 {
    $postcom=new PostManager();
   $sqeditpo=$postcom->editOnePosts($idPt); 
+  $sqeditpoRe= $postcom->editPostRetour($idPt); 
+  
+
     require('view/frontend/listOnePost.php');
 }

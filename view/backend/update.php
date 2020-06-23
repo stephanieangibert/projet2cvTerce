@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -75,13 +79,13 @@
                   echo'<td></td>';
                  endif;    
             echo '<td class="btn">
-             <a class="btn1" href="index.php?action=delete&amp;id=' . $data['id'] . '">Annuler</a>
+             <a class="btn1" href="index.php?action=deleteRet&amp;id=' . $data['id'] . '">Annuler</a>
              </td> ';
-             echo '<td class="btn">
+            /*  echo '<td class="btn">
              <a class="btn1" href="index.php?action=update&amp;id=' . $data['id'] . '">Mise à jour</a>
-             </td>
+             </td> 
         
-             </tr>';
+             </tr>'; */
         endwhile;?>            
          </tbody>
 

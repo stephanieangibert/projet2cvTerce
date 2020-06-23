@@ -6,11 +6,11 @@
             <div class="container m-auto d-flex flex-row flex-wrap justify-content-center align-items-center">
          
                <?php while ($data = $posts->fetch()):?>
-                  <?php while ($data = $reqR->fetch()):?>
+                 
                
                 <div class="row">
              
-                    <div class="col-md-4 align-sel-centers mr-3 mb-3">
+                    <div class="col-md-4 align-sel-centers mr-3 mb-3 itemActualite">
              
                         <div class="card text-center" style="width: 18rem;">
                    
@@ -35,7 +35,7 @@
                         </div>
                      
                         </div>
-                        <?php endwhile; ?>
+                        
                         <?php endwhile; ?>
                         </div>
                         <?php $posts->closeCursor();?>

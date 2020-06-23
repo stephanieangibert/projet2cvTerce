@@ -43,7 +43,7 @@
             <div class="menu">
             <a href="" class="menuItem"> 
             <span class="item">Loire Atlantique 2 CV</span>
-            <span class="label">Découvre le site</span>
+            <span class="label">Découvre le site</span> 
             </a>
             </div>
 
@@ -132,6 +132,9 @@
          <div class="encart" id="bientot">Merci à très bientôt !</div>
         </footer>
        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
-        <script src="public/js/effet.js"></script>
+ 
+       <script src="public/js/charming.min.js"></script>
+       <script src="public/js/actualite.js"></script>
+        <!-- <script src="public/js/effet.js"></script> -->
 </body>
 </html>

@@ -3,12 +3,20 @@ require('controller/frontend.php');
 // require('controller/backend.php');
 
 try {
-     if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'admin') {
+
+    if (isset($_GET['action'])) {
+        if ($_GET['action'] == 'listPosts') {
+            listPosts();
+        }
+    
+    
+     elseif  
+         ($_GET['action'] == 'admin') {
             admin();
          
           
         } 
+       
           elseif ($_GET['action'] == 'backoffice') {
          
             addActualite();
@@ -20,6 +28,12 @@ try {
             delete($_GET['id']);
            }
         }
+        elseif ($_GET['action'] == 'deleteRet') {
+            if(isset($_GET['id'])){
+             deleteRet($_GET['id'],$_GET['id_photo']);
+            }
+         }
+       
            elseif($_GET['action'] == 'edit'){
             if (isset($_GET['id']) && $_GET['id'] > 0){
                  editPosts($_GET['id']);
