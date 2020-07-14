@@ -63,7 +63,10 @@ try {
            }
             
         }  
-        
+        elseif ($_GET['action'] == 'souvenir') {
+          souvenir();
+            
+        }     
        
    
    

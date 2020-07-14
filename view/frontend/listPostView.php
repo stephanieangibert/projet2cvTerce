@@ -38,7 +38,7 @@
                         
                         <?php endwhile; ?>
                         </div>
-                        <?php $posts->closeCursor();?>
+                         <?php $posts->closeCursor();?> 
 
 <div class="pagination d-flex row justify-content-center">
 <?php

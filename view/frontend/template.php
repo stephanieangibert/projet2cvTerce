@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="public/css/style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet"> 
+</footer>
+    
     <title>Document</title>
 </head>
 <body  ontouchstart="">
@@ -18,44 +24,41 @@
          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#supportContent" >
            <span class="navbar-toggler-icon"></span>
          </button>
-         <div class="collapse navbar-collapse" id="supportContent">
-         <ul class="navbar-nav m-auto">
-           <li class="nav-item mr-5">
-             <a href="index.php" class="nav-link">Accueil</a>
-           </li>
-           <li class="nav-item mr-5 ml-5">
-              <a href="index.php#histoire" class="nav-link">Histoire</a>
-            </li>
-            <li class="nav-item mr-5 ml-5">
-                <a href="index.php#histoire" class="nav-link">Actualité</a>
-              </li>
-            <li class="nav-item mr-5 ml-5">
-                  <a href="index.php#contact" class="nav-link">S'inscrire</a>
-            </li>
-         </ul>
-        </div>
+                  <div class="collapse navbar-collapse" id="supportContent">
+                      <ul class="navbar-nav m-auto">
+                               <li class="nav-item mr-5">
+                                    <a href="index.php" class="nav-link">Accueil</a>
+                              </li>
+                              <li class="nav-item mr-5 ml-5">
+                                    <a href="index.php#histoire" class="nav-link">Histoire</a>
+                              </li>
+                              <li class="nav-item mr-5 ml-5">
+                                      <a href="index.php#actualite" class="nav-link">Actualité</a>
+                               </li>
+                              <li class="nav-item mr-5 ml-5">
+                                        <a href="index.php?action=souvenir" class="nav-link">Souvenirs</a>
+                               </li>
+                       </ul>
+                </div>
         </div>
       </nav>
    
     <header>
-        <div class="logo">
-            <div class="logoImg"><img src="images/logo.jpg" alt=""></div>
+    <div id="encartGauche">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione illum, quam similique earum, aut quae quisquam mollitia vero est natus enim expedita?</div>
+     <div class="encartDroite">La 2CV... ceci n'est pas une voiture, c'est un art de vivre ! </div> 
+    <!-- <div class="logo">
+            <div class="logoImg"><img src="images/logo.jpg" alt=""></div> -->
+         
             <div class="menu">
-            <a href="" class="menuItem"> 
+            <div class="menuItem"> 
             <span class="item">Loire Atlantique 2 CV</span>
-            <span class="label">Découvre le site</span> 
-            </a>
+            <span class="label">Viens nous rejoindre</span> 
+</div>
             </div>
 
         
-           <!--  <div class="reseau">
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </div> -->
-        </div>
+        
+ <!--        </div> -->
    
     </header>
     <section id="histoire">
@@ -83,58 +86,67 @@
     <?=$content?>
 
       
-        <section class="photo">
+        <section class="photo" id="actualite">
             <div class="row photoBis">
             
             </div>
         </section>
         
         <section class="formulaire">
-          <div class="row">
-          
-
-            <div class="col-md-6 m-auto flex-column justify-content-center align-items-center contour">
-              <h2 class="contact">Nous contacter</h2>
-              <div class="trait"></div>
-         <div class="d-flex flex-row justify-content-center align-items-center">
-              <div class="mr-5 pr-5"><p>1 rue du Chateau</p>
-                <p>75001 Paris, France</p>
-                <p>info@monsite.com</p>
-                <p>Tél : 01 23 45 67 89</p>
-              </div>
-              <form>
-            <div class="form-group">
-            
+          <div class="row ">
+         
+   <div class="m-auto col-md-6 formulaireDeContact d-flex flex-column justify-content-center align-items-center contour">
+   <div class="titreContact">
+   <h2 class="contact">Nous contacter</h2>
+   <div class="trait mt-4 mb-4"></div>
+   </div>
+   <div class="row">
+   <div class="col-md-6 d-flex justify-content-center align-items-center"> <div><p>1 rue du Chateau</p>
+                                       <p>75001 Paris, France</p>
+                                       <p>info@monsite.com</p>
+                                       <p>Tél : 01 23 45 67 89</p>
+                                </div></div>
+  <div class="col-md-6"> <div class="form-group ">            
               <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nom">
-            </div>
-            <div class="form-group">
-            
+               </div>
+
+              <div class="form-group">            
               <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Email">
-            </div>
-            <div class="form-group">
-           
+              </div>
+
+            <div class="form-group">           
               <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Téléphone">
-            </div>
-            <div class="form-group">
-           
+             </div>
+
+            <div class="form-group">           
               <textarea type="text" class="form-control" id="formGroupExampleInput2" placeholder="Message"></textarea>
             </div>
+
             <button type="submit" class="btn btn-dark mr-5">Envoyer</button>
           </form>  
-        </div>
-          </div>
-       
-      </div>
 
-        </section>
-        <footer>
-         <div id="phylactere"> <i class="fas fa-comment-dots"></i></div>
-         <div class="encart" id="bientot">Merci à très bientôt !</div>
-        </footer>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
- 
+      
+  </div>
+  </div>
+
+
+
+</div>
+         
+        
+       
+
+       
+</section>
+<footer>
+     
+       
+     <div id="phylactere"> <i class="fas fa-comment-dots"></i></div>
+     <div id="bientot" class="encart">Merci à très bientôt !</div>
+</footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script> 
        <script src="public/js/charming.min.js"></script>
-       <script src="public/js/actualite.js"></script>
-        <!-- <script src="public/js/effet.js"></script> -->
+        <script src="public/js/actualite.js"></script> 
+        <script src="public/js/effet.js"></script>
 </body>
 </html>

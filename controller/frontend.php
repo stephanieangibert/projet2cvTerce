@@ -251,9 +251,14 @@ function editPost($idPt)
 function editOnePost($idPt)
 {
    $postcom=new PostManager();
-  $sqeditpo=$postcom->editOnePosts($idPt); 
-  $sqeditpoRe= $postcom->editPostRetour($idPt); 
-  
+  $sqeditpo=$postcom->editOnePosts($idPt);   
 
     require('view/frontend/listOnePost.php');
+   
+}
+function souvenir()
+{
+   $postcom=new PostManager();
+  $sqeditpoRe=$postcom->souvenirPhoto();   
+   require('view/frontend/souvenir.php');
 }

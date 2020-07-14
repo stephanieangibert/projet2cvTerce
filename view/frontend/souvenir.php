@@ -7,8 +7,8 @@
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="public/css/style.css">
 <link rel="stylesheet" href="public/css/style22.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -41,27 +41,45 @@
         </div>
         </div>
       </nav>
-      <section class="onepost">
-      <?php echo ' <h1>'.$sqeditpo['title'].'</h1>' ?>
-    <?php   if(strlen($sqeditpo['photo'])!=0){
-     echo '<div><p class="photoOnePost"> <img class="photoRe"src="member/photo/'.$sqeditpo['photo'].'"></p></div>';
-     echo '<p class="ponepost"> '.$sqeditpo['content'].'</p>';
+      <section class="souvenirs">
+      <div class="container p-5 m-auto d-flex flex-row flex-wrap justify-content-center align-items-center">
     
-    }
-     else{ echo'<br>';
-    }?>
-    </section> 
-
-  
-  
-  
-  
- 
-        <footer>
+    <?php while ($data=$sqeditpoRe->fetch()):?>
+         
+          <div class="row">
+       
+              <div class="col-md-4 align-sel-centers mr-3 mb-3">
+       
+                  <div class="card text-center" style="width: 18rem;">
+             
+                      <div class="card-body">
+                 
+                      
+                        <?php if($data['photo']!=""):
+                                echo'<img src="member/photo/'.$data['photo'].'">';
+            endif; ?>
+                        <!-- <img src="images/picnic.jpg" alt=""> -->
+                        <p class="card-text">  <?php   echo ($data['content']);?></p>
+                    
+                                                                                
+                       
+                                           
+                      </div>
+                                          
+                    </div>   
+              
+                  </div>
+               
+                  </div>
+                  <?php endwhile; ?>  
+         
+                  </div>
+                  </section>
+      <footer>
          <div id="phylactere"> <i class="fas fa-comment-dots"></i></div>
          <div class="encart" id="bientot">Merci à très bientôt !</div>
         </footer>
-      
-        <script src="public/js/effet.js"></script>  
+       
+        <script src="public/js/effet.js"></script> 
 </body>
 </html>

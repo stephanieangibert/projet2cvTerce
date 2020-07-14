@@ -21,8 +21,9 @@ header{
     background-position: center;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     background-attachment: fixed;
+    position: relative;
    
 
 }
@@ -92,7 +93,7 @@ h2{
 }
 #actualite{
     margin-top: 2%;
-    margin-bottom: 5%;
+
 }
 .container img{
     width: 90%;
@@ -136,8 +137,8 @@ h2{
 footer{
     background-color: #2F2E2E;
     width: 100%;
-   padding-top: 20px;
-   padding-right: 20px;
+   padding-top: 43px;
+   padding-right: 43px;
    position: relative;
   margin-bottom: 0px;
 }
@@ -154,46 +155,47 @@ footer{
     cursor: pointer;
 
 }
-/* .encart{
+ .encart{
    width: 100px;
    height: 100px;
-
     background-color: chocolate;
     position: absolute;
-    right: 20px;
-display: none;
+    top:0%;
+    right: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    padding: 3.6%;
-  
-  
-} */
-.encartBis{
-
-    animation:apparition 1s ease-in-out forwards;
+    padding: 3%;
+   border-radius: 12px;
+   opacity: 0;
    
+  
+} 
+.encartBis{
+    animation:apparition 0.2s ease-in-out forwards;
 }
-@keyframes apparition {
+
+ @keyframes apparition {
     0% {
     
-        transform: translateY(100px);
-        display: none;
-    }
-
-    50% {
-        transform: translateY(0px);
-       display: none;
- 
-    }
-
-    100% {
-        transform: translateY(-220px);
-   display: none;
+    opacity: 0;
+    transform: translateY(-20px);
     
     }
+25%{
+    opacity: 0.4;
 }
+50%{
+    opacity: 0.6;
+} 
+    100% {
+      opacity: 1;
+      transform: translateY(-40px);
+ 
+    
+    }
+} 
 .card{
     width: 286px;
     height: 362px;
@@ -261,12 +263,15 @@ span{
 }
 .label{
     position: absolute;
-    left: 0;
-    width: 100%;
+    left: -180px;
+    width: 150%;
     color:transparent;
     overflow: hidden;
     text-align: center;
     transition: all 0.3s;
+    font-size: 60px;
+  
+   
 }
 .menu{
     position: relative;
@@ -274,8 +279,96 @@ span{
 }
  .menuItem:hover .label{
     color: tomato;
+    font-size: 100px;
+    
 }
 .itemActualite{
     transform: translateX(-3000px);
 }
- 
+ .formulaireDeContact{
+     width: 50%;
+ }
+ #encartGauche{
+     width: 250px;
+     height: 270px;
+     color: black;
+     position: absolute;
+     top:50%;
+     left: 5%;
+     transform: translateX(-3000px);
+     font-size: 18px;
+     background-color: white;
+     border-radius: 12px;
+     opacity: 0.7;
+     padding: 1%;
+ }
+ .encartDroite{
+     position: absolute;
+     top:78%;
+     left: 40%;
+     font-size: 40px;
+     color:tomato;
+     width: 1050px;
+     font-family: 'Abril Fatface';
+     transform: translateX(3000px);
+
+ }
+ .navbar-toggler-icon {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+        background-image: none;
+        background-size: auto;
+    background-size: 100%;
+}
+
+@media screen and (max-width:375px) {
+    span{
+
+font-size: 30px;
+width: 100%;
+    }
+    .logo{
+        width: 100%;
+    }
+    .menuItem span {
+        
+        display:block;
+      
+    }
+    .encartDroite {
+        position: absolute;
+        top: 78%;
+        left: 2%;
+        font-size: 20px;
+        color: tomato;
+        width: 350px;
+        font-family: 'Abril Fatface';
+        transform: translateX(3000px);
+        height: 30px;
+    }
+    label{
+width: 100%;
+    }
+    .menu{
+        position: absolute;
+        top:20%;
+        left:5%;
+        
+    }
+    .item {
+        color: black;
+    }
+    #encartGauche{
+        top: 40%;
+    }
+    .photo{
+        height: 300px;
+    }
+    .formulaireDeContact {
+        width: 90%;
+    }
+}

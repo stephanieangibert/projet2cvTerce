@@ -1,7 +1,7 @@
 <?php
 
 
-require_once("model/frontend/manager.php"); // Vous n'alliez pas oublier cette ligne ? ;o)
+require_once("model/frontend/manager.php"); 
 
 
 class PostManager extends Manager
@@ -75,29 +75,22 @@ public function editPosts($idPt)
     $sqeditpo=$sqedp->fetch();
     return $sqeditpo;
 }
-public function editOnePosts($idPt)
+ public function editOnePosts($idPt)
 {
     $db = $this->dbConnect();
-    $sqedp =$db->prepare( "SELECT * FROM actualite where id =?");   
+    $sqedp =$db->prepare( "SELECT * FROM actualite where id =?");      
     $sqedp->execute(array($idPt));
     $sqeditpo=$sqedp->fetch();
     return $sqeditpo;
-}
-/* public function editPostRetour($idPt)
-{
-    $db = $this->dbConnect();
-    $sqedp =$db->prepare( "SELECT * FROM retour ORDER BY id_photo =?");   
-    $sqedp->execute(array($idPt));
-    $sqeditpoRe=$sqedp->fetch();
-    return $sqeditpoRe;
-} */
-public function editPostRetour($idPt)
+} 
+public function souvenirPhoto()
 {
     $db = $this->dbConnect(); 
-    $sqeditpoRe=$db->query('SELECT * FROM retour ORDER BY id_photo');
+    $sqeditpoRe=$db->query('SELECT * FROM retour ORDER BY id DESC');
     return $sqeditpoRe;
 
 }
+ 
 
 public function upd($title,$content,$photo,$id)
 {
